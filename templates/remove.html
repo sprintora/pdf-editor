@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Remove pages{% endblock %}
+{% block content %}
+<a href="{{ url_for('index') }}" class="back">← All tools</a>
+<h1>Remove pages</h1>
+
+<div id="dropzone" class="dropzone" tabindex="0" role="button">
+  <div class="dz-icon">📥</div>
+  <strong>Drag a PDF here</strong> or click to browse
+  <input type="file" id="file-input" accept="application/pdf,.pdf" hidden>
+</div>
+
+<div id="workspace" hidden>
+  <p id="file-info" class="file-info"></p>
+  <p class="muted"><strong>Click a page</strong> to mark it for removal (click again to undo).
+    Hold <strong>Shift</strong> and click to mark a whole range.</p>
+
+  <div class="toolbar">
+    <input id="spec" type="text" placeholder="Or type pages: 1, 4, 8-10" aria-label="Pages to mark">
+    <button type="button" id="mark-btn" class="secondary">Mark</button>
+    <button type="button" id="clear-btn" class="secondary">Clear all</button>
+    <span id="counter" class="muted"></span>
+  </div>
+
+  <div id="pages" class="card-grid"></div>
+
+  <div class="actions">
+    <button id="go" type="button" disabled>Remove marked pages &amp; preview</button>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='remove.js') }}"></script>{% endblock %}

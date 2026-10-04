@@ -1,0 +1,57 @@
+name: Build Microsoft Store MSIX
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build-msix:
+    runs-on: windows-2022
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies and bundle OCR
+        shell: cmd
+        run: call setup_build.bat
+
+      - name: Run tests
+        shell: cmd
+        run: venv\Scripts\python.exe -m pytest -q
+
+      - name: Build Store application directory
+        shell: cmd
+        run: |
+          set EDITORA_ONEDIR=1
+          venv\Scripts\python.exe -m PyInstaller --noconfirm --clean pdf_editor.spec
+
+      - name: Package MSIX
+        shell: cmd
+        run: venv\Scripts\python.exe store\make_msix.py
+
+      - name: Verify MSIX artifact
+        shell: pwsh
+        run: |
+          $package = Get-ChildItem dist -Filter *.msix -File
+          if ($package.Count -ne 1) { throw "Expected exactly one MSIX, found $($package.Count)" }
+          if ($package.Length -le 0) { throw "The MSIX is empty" }
+          Write-Host "Created $($package.FullName) ($([math]::Round($package.Length / 1MB, 2)) MB)"
+
+      - name: Upload MSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EditoraPDFEdit-MSIX
+          path: dist/*.msix
+          if-no-files-found: error
+          retention-days: 14

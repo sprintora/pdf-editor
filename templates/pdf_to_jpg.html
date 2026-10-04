@@ -1,0 +1,21 @@
+{% extends "tool_page.html" %}
+{% set api = "/api/pdf-to-jpg" %}{% set button = "Convert to images" %}
+{% block options %}
+<fieldset>
+  <legend>Image settings</legend>
+  <label class="radio"><input type="radio" name="format" value="jpg" checked> JPG (smaller files)</label>
+  <label class="radio"><input type="radio" name="format" value="png"> PNG (sharper text, larger files)</label>
+  <div class="row">
+    Quality
+    <select name="dpi">
+      <option value="72">Low — 72 DPI (screen)</option>
+      <option value="150" selected>Medium — 150 DPI</option>
+      <option value="300">High — 300 DPI (print)</option>
+    </select>
+  </div>
+  <div class="row">
+    Pages <input type="text" name="pages" placeholder="all pages — or e.g. 1, 3-5">
+  </div>
+  <p class="muted">One page gives a single image; several pages are delivered as a ZIP.</p>
+</fieldset>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<a href="{{ url_for('index') }}" class="back">← All tools</a>
+
+<section class="about-hero">
+  <img src="{{ url_for('static', filename='logo.png') }}" alt="{{ app_name }}" class="hero-logo">
+  <div>
+    <h1>{{ app_name }}</h1>
+    <p class="muted">Version {{ app_version }}</p>
+    <p>An offline PDF toolbox: merge, split, convert, compress, OCR, protect and more —
+      running entirely on your computer.</p>
+  </div>
+</section>
+
+<div class="about-grid">
+  <section class="about-card">
+    <h2>Developer</h2>
+    <p><strong>{{ developer }}</strong></p>
+    <p><a class="button-link" href="{{ developer_linkedin }}" data-external target="_blank" rel="noopener">
+      LinkedIn profile ↗</a></p>
+    <p class="muted">Copyright © 2026 {{ developer }}. All rights reserved.</p>
+  </section>
+
+  <section class="about-card">
+    <h2>Your privacy</h2>
+    <p>Your files stay on this computer. {{ app_name }} has no account, no analytics and does not
+      upload anything: PDFs are processed in memory and discarded automatically (uploads after an
+      hour of inactivity, results after 30 minutes). Nothing is written to disk except files you
+      choose to download.</p>
+  </section>
+</div>
+
+<section class="about-card">
+  <h2>License</h2>
+  <details open>
+    <summary>Software license agreement</summary>
+    <pre class="license-text">{{ license_text }}</pre>
+  </details>
+</section>
+
+<section class="about-card">
+  <h2>Open-source software</h2>
+  <p>{{ app_name }} is built with open-source components: Flask, pypdf, PDFium (pypdfium2), Pillow,
+    ReportLab, python-docx, cryptography, Waitress and the Tesseract OCR engine
+    (<a href="{{ tesseract_url }}" data-external target="_blank" rel="noopener">project page</a>).
+    Each is used under its own license.</p>
+  <p><a href="{{ url_for('licenses') }}" class="button-link">View all third-party licenses</a></p>
+</section>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Third-party licenses{% endblock %}
+{% block content %}
+<a href="{{ url_for('about') }}" class="back">← About</a>
+<h1>Third-party licenses</h1>
+<p class="muted">{{ app_name }} includes the following open-source software.</p>
+<pre class="license-text tall">{{ notices }}</pre>
+{% endblock %}

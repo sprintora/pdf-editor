@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+  <img src="{{ url_for('static', filename='logo.png') }}" alt="{{ app_name }}" class="hero-logo">
+  <div>
+    <h1>All your PDF tools, on your computer</h1>
+    <p class="muted">Merge, split, convert, compress, OCR and more. Your files are processed in memory
+      on this computer and discarded automatically after a while.</p>
+  </div>
+</section>
+
+{% for group, items in groups.items() %}
+  <h2 class="group">{{ group }}</h2>
+  <div class="cards">
+    {% for t in items %}
+    <a class="card" href="{{ url_for(t.id) }}">
+      <span class="icon">{{ t.icon }}</span>
+      <h3>{{ t.title }}</h3>
+      <p>{{ t.desc }}</p>
+    </a>
+    {% endfor %}
+  </div>
+{% endfor %}
+{% endblock %}

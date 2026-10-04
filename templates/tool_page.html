@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ tool.title }}{% endblock %}
+{% block content %}
+<a href="{{ url_for('index') }}" class="back">← All tools</a>
+<h1>{{ tool.icon }} {{ tool.title }}</h1>
+<p class="muted">{{ tool.desc }}</p>
+{% block intro %}{% endblock %}
+
+<div id="tool" data-api="{{ api }}" data-allow-encrypted="{{ 1 if allow_encrypted else 0 }}">
+  <div id="dropzone" class="dropzone" tabindex="0" role="button">
+    <div class="dz-icon">📥</div>
+    <strong>Drag a PDF here</strong> or click to browse
+    <input type="file" id="file-input" accept="application/pdf,.pdf" hidden>
+  </div>
+
+  <div id="workspace" hidden>
+    <div class="file-box">
+      <div class="thumb mini"><img id="first-thumb" alt="" hidden></div>
+      <div>
+        <div id="file-name" class="file-info"></div>
+        <div id="file-meta" class="muted"></div>
+      </div>
+    </div>
+
+    <div id="options" class="options">{% block options %}{% endblock %}</div>
+
+    <div class="actions">
+      <button id="go" type="button" disabled>{{ button }}</button>
+      <span id="status" class="muted"></span>
+    </div>
+    <div id="progress" class="progress" hidden>
+      <div class="bar"><div id="bar-fill"></div></div>
+      <span id="progress-text" class="muted"></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='tool.js') }}"></script>{% endblock %}

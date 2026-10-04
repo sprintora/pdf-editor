@@ -1,0 +1,11 @@
+{% extends "tool_page.html" %}
+{% set api = "/api/pdf-to-word" %}{% set button = "Convert" %}
+{% block options %}
+<fieldset>
+  <legend>Convert to</legend>
+  <label class="radio"><input type="radio" name="format" value="docx" checked> Word document (.docx)</label>
+  <label class="radio"><input type="radio" name="format" value="txt"> Plain text (.txt)</label>
+  <p class="muted">The text is extracted and re-flowed into paragraphs. Tables, columns and images are not kept.
+    For a scanned PDF, run <a href="{{ url_for('ocr') }}">OCR</a> first.</p>
+</fieldset>
+{% endblock %}

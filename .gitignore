@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments and logs
+venv/
+.venv/
+*.log
+
+# PyInstaller and build output
+build/
+dist/
+*.spec.bak
+
+# Downloaded OCR engine and language data
+vendor/tesseract/
+ocr_languages/*.traineddata
+
+# Store packages and signing/build leftovers
+*.msix
+*.msixbundle
+*.appx
+*.appxbundle
+*.pfx
+
+# Editor and operating-system files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db

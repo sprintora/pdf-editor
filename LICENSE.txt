@@ -1,0 +1,43 @@
+EDITORA PDFEDIT - SOFTWARE LICENSE AGREEMENT
+
+Copyright (c) 2026 Kanishka Meddegoda. All rights reserved.
+
+By installing or using Editora PDFEdit (the "Software") you agree to these terms.
+
+1. LICENSE
+   You may install and use the Software on your own devices, for personal,
+   educational or commercial purposes, free of charge.
+
+2. RESTRICTIONS
+   You may not sell, rent, sublicense or redistribute the Software, and you may not
+   modify, reverse engineer or decompile it, except where the law allows this despite
+   this restriction. The Software, its name and its logo remain the property of the
+   developer.
+
+3. YOUR FILES AND PRIVACY
+   The Software processes your files on your own computer. It does not collect, upload
+   or share your files or personal information.
+
+4. THIRD-PARTY SOFTWARE
+   The Software includes open-source components (for example the Tesseract OCR engine,
+   PDFium, pypdf, Flask and Pillow). They are provided under their own licenses, which
+   are listed under "Third-party licenses" in the About page. Nothing in this agreement
+   limits your rights under those licenses.
+
+5. NO WARRANTY
+   The Software is provided "as is", without warranty of any kind, express or implied,
+   including fitness for a particular purpose and accuracy of results (for example OCR
+   text recognition and file conversions can contain errors). Please keep a copy of your
+   original files and check important results.
+
+6. LIMITATION OF LIABILITY
+   To the maximum extent permitted by law, the developer is not liable for any loss of
+   data, loss of profit or other damage arising from the use of, or inability to use,
+   the Software.
+
+7. CHANGES AND TERMINATION
+   This license applies until terminated. It ends automatically if you break these
+   terms, and you must then stop using and delete the Software.
+
+Developer: Kanishka Meddegoda
+LinkedIn:  https://lk.linkedin.com/in/kanishka-in

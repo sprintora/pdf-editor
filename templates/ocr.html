@@ -1,0 +1,46 @@
+{% extends "tool_page.html" %}
+{% set api = "/api/ocr" %}{% set button = "Start OCR" %}
+{% block intro %}
+{% if not ocr_ready %}
+<div class="alert">
+  {% if ocr_packaged %}
+  <strong>The OCR engine is missing from this copy of the app.</strong>
+  Please reinstall {{ app_name }}.
+  {% else %}
+  <strong>The OCR engine (Tesseract) isn't installed.</strong>
+  Install it once from
+  <a href="{{ tesseract_url }}" data-external target="_blank" rel="noopener">github.com/UB-Mannheim/tesseract/wiki</a>
+  (tick the languages you need, e.g. English, Sinhala, Tamil), then restart this app.
+  The finished .exe build already contains the engine.
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}
+{% block options %}
+{% if ocr_ready %}
+<fieldset>
+  <legend>Language of the document</legend>
+  <div class="row">
+    <select name="lang">
+      {% for code, name in langs %}<option value="{{ code }}">{{ name }}</option>{% endfor %}
+    </select>
+    <span class="muted">and (optional)</span>
+    <select name="lang2">
+      <option value="">— none —</option>
+      {% for code, name in langs %}<option value="{{ code }}">{{ name }}</option>{% endfor %}
+    </select>
+  </div>
+</fieldset>
+<fieldset>
+  <legend>Result</legend>
+  <label class="radio"><input type="radio" name="output" value="pdf" checked> Searchable PDF (text can be selected and searched)</label>
+  <label class="radio"><input type="radio" name="output" value="txt"> Plain text file (.txt)</label>
+</fieldset>
+<fieldset>
+  <legend>Scan quality</legend>
+  <label class="radio"><input type="radio" name="quality" value="standard" checked> Standard (200 DPI, faster)</label>
+  <label class="radio"><input type="radio" name="quality" value="high"> High (300 DPI, slower, better for small print)</label>
+</fieldset>
+<p class="muted">OCR can take a few seconds per page. A progress bar will show how far it is.</p>
+{% endif %}
+{% endblock %}

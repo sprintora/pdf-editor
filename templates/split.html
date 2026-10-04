@@ -1,0 +1,21 @@
+{% extends "tool_page.html" %}
+{% set api = "/api/split" %}{% set button = "Split PDF" %}
+{% block options %}
+<fieldset>
+  <legend>How should the PDF be split?</legend>
+  <label class="radio"><input type="radio" name="mode" value="ranges" checked> By ranges — each range becomes its own PDF</label>
+  <div class="opt" data-show-when="mode=ranges">
+    <input type="text" name="ranges" placeholder="e.g. 1-3, 4-6, 7">
+    <small class="muted">Separate ranges with commas. Several files are delivered as a ZIP.</small>
+  </div>
+  <label class="radio"><input type="radio" name="mode" value="each"> Every page into its own PDF</label>
+  <label class="radio"><input type="radio" name="mode" value="every"> Every N pages</label>
+  <div class="opt" data-show-when="mode=every">
+    Split after every <input type="number" name="every" min="1" value="2" class="small"> pages
+  </div>
+  <label class="radio"><input type="radio" name="mode" value="extract"> Extract selected pages into one PDF</label>
+  <div class="opt" data-show-when="mode=extract">
+    <input type="text" name="pages" placeholder="e.g. 1, 4, 8-10">
+  </div>
+</fieldset>
+{% endblock %}

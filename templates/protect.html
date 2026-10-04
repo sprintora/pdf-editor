@@ -1,0 +1,10 @@
+{% extends "tool_page.html" %}
+{% set api = "/api/protect" %}{% set button = "Protect PDF" %}
+{% block options %}
+<fieldset>
+  <legend>Choose a password</legend>
+  <div class="row"><label>Password <input type="password" name="password" autocomplete="new-password"></label></div>
+  <div class="row"><label>Repeat password <input type="password" name="confirm" autocomplete="new-password"></label></div>
+  <p class="muted">Uses AES-256 encryption. If you forget the password it cannot be recovered.</p>
+</fieldset>
+{% endblock %}

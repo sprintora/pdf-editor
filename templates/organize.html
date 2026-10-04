@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Organize pages{% endblock %}
+{% block content %}
+<a href="{{ url_for('index') }}" class="back">← All tools</a>
+<h1>Organize pages</h1>
+
+<div id="dropzone" class="dropzone" tabindex="0" role="button">
+  <div class="dz-icon">📥</div>
+  <strong>Drag a PDF here</strong> or click to browse
+  <input type="file" id="file-input" accept="application/pdf,.pdf" hidden>
+</div>
+
+<div id="workspace" hidden>
+  <p id="file-info" class="file-info"></p>
+  <p class="muted"><strong>Drag the pages</strong> to put them in a new order.
+    The blue number is the page's new position.</p>
+
+  <div class="toolbar">
+    <button type="button" id="reverse-btn" class="secondary">Reverse</button>
+    <button type="button" id="shuffle-btn" class="secondary">Shuffle</button>
+    <button type="button" id="reset-btn" class="secondary">Reset order</button>
+  </div>
+
+  <div id="pages" class="card-grid"></div>
+
+  <div class="actions">
+    <button id="go" type="button" disabled>Apply new order &amp; preview</button>
+    <span id="status" class="muted"></span>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='organize.js') }}"></script>{% endblock %}

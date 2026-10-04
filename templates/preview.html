@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Preview{% endblock %}
+{% block content %}
+<a href="{{ back_url }}" class="back">← Edit again</a>
+<h1>{% if ext == ".pdf" %}Preview your result{% else %}Your file is ready{% endif %}</h1>
+
+<div class="summary">
+  <h2>{{ info.title }}</h2>
+  <ul>
+    {% for line in info.lines %}<li>{{ line }}</li>{% endfor %}
+  </ul>
+</div>
+
+<form method="get" action="{{ url_for('download', token=token) }}" class="download-form">
+  <label class="field" for="name">File name</label>
+  <div class="name-row">
+    <input type="text" id="name" name="name" value="{{ default_name }}" maxlength="100" required>
+    <span class="ext">{{ ext }}</span>
+    <button type="submit">Download</button>
+  </div>
+</form>
+
+{% if ext == ".pdf" %}
+  <iframe class="preview" src="{{ url_for('view_file', token=token) }}" title="PDF preview"></iframe>
+  <p class="muted">Preview not showing?
+    <a href="{{ url_for('view_file', token=token) }}" target="_blank" rel="noopener">Open it in a new tab</a>.
+    Results are kept for 30 minutes.</p>
+{% elif ext in (".jpg", ".png") %}
+  <img class="preview-image" src="{{ url_for('view_file', token=token) }}" alt="Result">
+{% else %}
+  <div class="file-ready">
+    <div class="file-ready-icon">{% if ext == ".zip" %}🗂️{% elif ext == ".docx" %}📝{% else %}📄{% endif %}</div>
+    <div><strong>{{ default_name }}{{ ext }}</strong><br><span class="muted">{{ size }}</span></div>
+  </div>
+  <p class="muted">Results are kept for 30 minutes.</p>
+{% endif %}
+{% endblock %}

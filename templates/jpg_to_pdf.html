@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}{{ tool.title }}{% endblock %}
+{% block content %}
+<a href="{{ url_for('index') }}" class="back">← All tools</a>
+<h1>{{ tool.icon }} {{ tool.title }}</h1>
+<p class="muted">{{ tool.desc }}</p>
+
+<div id="dropzone" class="dropzone" tabindex="0" role="button">
+  <div class="dz-icon">🖼️</div>
+  <strong>Drag images here</strong> (JPG, PNG, WebP, GIF, BMP, TIFF) or click to browse
+  <input type="file" id="file-input" accept="image/*" multiple hidden>
+</div>
+
+<p class="muted">Each image becomes one page. <strong>Drag the cards</strong> to change the page order.</p>
+<div id="cards" class="card-grid"></div>
+
+<div id="options" class="options">
+  <fieldset>
+    <legend>Page settings</legend>
+    <div class="row">Page size
+      <select name="page_size">
+        <option value="a4" selected>A4</option>
+        <option value="letter">US Letter</option>
+        <option value="fit">Same as the image</option>
+      </select>
+    </div>
+    <div class="row" data-show-when="page_size=a4|letter">Orientation
+      <select name="orientation">
+        <option value="auto" selected>Automatic</option>
+        <option value="portrait">Portrait</option>
+        <option value="landscape">Landscape</option>
+      </select>
+    </div>
+    <div class="row">Margin
+      <select name="margin">
+        <option value="none">None</option>
+        <option value="small" selected>Small</option>
+        <option value="big">Big</option>
+      </select>
+    </div>
+  </fieldset>
+</div>
+
+<div class="actions">
+  <button id="go" type="button" disabled>Create PDF &amp; preview</button>
+  <span id="status" class="muted"></span>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='images.js') }}"></script>{% endblock %}

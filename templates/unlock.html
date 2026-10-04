@@ -1,0 +1,10 @@
+{% extends "tool_page.html" %}
+{% set api = "/api/unlock" %}{% set button = "Unlock PDF" %}{% set allow_encrypted = true %}
+{% block options %}
+<fieldset>
+  <legend>Password</legend>
+  <div class="row"><label>PDF password <input type="password" name="password" autocomplete="off"></label></div>
+  <p class="muted">Enter the password the PDF asks for. If it only has editing/printing restrictions, leave this empty.
+    This tool only removes a password you already know.</p>
+</fieldset>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "tool_page.html" %}
+{% set api = "/api/watermark" %}{% set button = "Add watermark" %}
+{% block options %}
+<fieldset>
+  <legend>Watermark text</legend>
+  <div class="row"><input type="text" name="text" maxlength="60" placeholder="e.g. CONFIDENTIAL" value="CONFIDENTIAL"></div>
+  <div class="row">Size
+    <select name="size"><option value="small">Small</option><option value="medium" selected>Medium</option><option value="large">Large</option></select>
+    Strength
+    <select name="opacity"><option value="light">Light</option><option value="medium" selected>Medium</option><option value="strong">Strong</option></select>
+  </div>
+  <div class="row">Colour
+    <select name="color"><option value="gray" selected>Gray</option><option value="red">Red</option><option value="blue">Blue</option><option value="black">Black</option></select>
+    Direction
+    <select name="angle"><option value="45" selected>Diagonal</option><option value="0">Horizontal</option></select>
+  </div>
+  <p class="muted">The watermark is placed in the middle of every page. Latin letters and numbers only.</p>
+</fieldset>
+{% endblock %}

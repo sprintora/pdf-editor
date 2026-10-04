@@ -1,0 +1,11 @@
+{% extends "tool_page.html" %}
+{% set api = "/api/compress" %}{% set button = "Compress PDF" %}
+{% block options %}
+<fieldset>
+  <legend>Compression level</legend>
+  <label class="radio"><input type="radio" name="level" value="low"> Less compression — best quality</label>
+  <label class="radio"><input type="radio" name="level" value="recommended" checked> Recommended — good quality, much smaller</label>
+  <label class="radio"><input type="radio" name="level" value="extreme"> Extreme — smallest file, lower image quality</label>
+  <p class="muted">Images are re-compressed and the file is tidied up. PDFs that are mostly text won't shrink much.</p>
+</fieldset>
+{% endblock %}

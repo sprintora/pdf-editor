@@ -1,0 +1,26 @@
+{% extends "tool_page.html" %}
+{% set api = "/api/page-numbers" %}{% set button = "Add page numbers" %}
+{% block options %}
+<fieldset>
+  <legend>Page numbers</legend>
+  <div class="row">Position
+    <select name="position">
+      <option value="bottom-center" selected>Bottom center</option>
+      <option value="bottom-right">Bottom right</option>
+      <option value="bottom-left">Bottom left</option>
+      <option value="top-center">Top center</option>
+      <option value="top-right">Top right</option>
+      <option value="top-left">Top left</option>
+    </select>
+  </div>
+  <div class="row">Text
+    <select name="format">
+      <option value="number" selected>1, 2, 3 …</option>
+      <option value="page">Page 1, Page 2 …</option>
+      <option value="page_of">Page 1 of N …</option>
+    </select>
+  </div>
+  <div class="row">Start at <input type="number" name="start" value="1" min="0" class="small"></div>
+  <label class="radio"><input type="checkbox" name="skip_first"> Don't number the first page (cover page)</label>
+</fieldset>
+{% endblock %}
