@@ -32,18 +32,19 @@ jobs:
         shell: cmd
         run: call setup_build.bat
 
+      - name: Build EXE with PyInstaller
+        shell: cmd
+        run: call build_exe.bat
+
       - name: Show what was built
         if: always()
         shell: pwsh
         run: |
-          Write-Host "--- Top-level folders ---"
-          Get-ChildItem -Directory | Select-Object -ExpandProperty Name
-          Write-Host "--- All .exe files in the workspace (excluding venv) ---"
-          Get-ChildItem -Recurse -Filter *.exe -ErrorAction SilentlyContinue |
-            Where-Object { $_.FullName -notmatch '\\(venv|\.venv|Lib|Scripts)\\' } |
-            Select-Object -ExpandProperty FullName
-          Write-Host "--- dist folder ---"
-          if (Test-Path dist) { Get-ChildItem dist -Recurse | Select-Object -First 50 -ExpandProperty FullName } else { Write-Host "No dist folder" }
+          if (Test-Path dist) {
+            Get-ChildItem dist -Recurse -Depth 2 | Select-Object -First 40 -ExpandProperty FullName
+          } else {
+            Write-Host "No dist folder"
+          }
 
       - name: Upload build
         uses: actions/upload-artifact@v4
